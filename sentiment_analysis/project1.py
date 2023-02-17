@@ -340,7 +340,7 @@ def extract_words(input_string):
     return input_string.lower().split()
 
 
-def bag_of_words(texts):
+def bag_of_words(texts:list):
     """
     Inputs a list of string reviews
     Returns a dictionary of unique unigrams occurring over the input
@@ -348,11 +348,14 @@ def bag_of_words(texts):
     Feel free to change this code as guided by Problem 9
     """
     # Your code here
+    stop_words = np.loadtxt("stopwords.txt",dtype="str")
     dictionary = {} # maps word to unique index
     for text in texts:
         word_list = extract_words(text)
         for word in word_list:
-            if word not in dictionary:
+            if word in stop_words:
+                continue
+            if word not in dictionary :
                 dictionary[word] = len(dictionary)
     return dictionary
 
@@ -376,7 +379,9 @@ def extract_bow_feature_vectors(reviews, dictionary):
         word_list = extract_words(text)
         for word in word_list:
             if word in dictionary:
+                # feature_matrix[i, dictionary[word]] += 1
                 feature_matrix[i, dictionary[word]] = 1
+
     return feature_matrix
 
 
