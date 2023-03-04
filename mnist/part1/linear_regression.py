@@ -16,7 +16,9 @@ def closed_form(X, Y, lambda_factor):
         represents the y-axis intercept of the model and therefore X[0] = 1
     """
     # YOUR CODE HERE
-    raise NotImplementedError
+    n,d = X.shape
+    return np.linalg.inv((X.T)@X+lambda_factor*np.identity(d)) @(X.T)@Y
+
 
 ### Functions which are already complete, for you to use ###
 
