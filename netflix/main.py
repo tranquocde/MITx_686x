@@ -13,9 +13,11 @@ for K in range(1,5):
     best_pos = None
     for seed in range(5):
         mixture , post = common.init(X,K,seed)
-        mixture , post , cost = kmeans.run(X,mixture,post)
+        mixture , post , cost = naive_em.run(X,mixture,post)
         if cost < min_cost:
+            min_cost = cost
             best_mix = mixture
             best_pos = post
-
+    print(f"Cost for K = {K}: {min_cost} ")
     common.plot(X,mixture=best_mix,post=best_pos,title=f"figure with K={K}")
+    
