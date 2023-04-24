@@ -10,3 +10,7 @@ n, d = X.shape
 seed = 0
 
 # TODO: Your code here
+mixture,post = common.init(X,K,seed)
+X_pred = em.fill_matrix(X,mixture)
+print(X_pred)
+print(X)
